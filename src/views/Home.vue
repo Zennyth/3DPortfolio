@@ -1,16 +1,16 @@
 <template>
   <div class="home">
-    <Gallery />
+    <Scene />
   </div>
 </template>
 
 <script>
-import Gallery from "@/components/Gallery"
+import Scene from "@/components/Scene"
 
 export default {
   name: 'Home',
   components: {
-    Gallery
+    Scene
   }
 }
 </script>
