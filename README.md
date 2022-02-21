@@ -24,4 +24,4 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Inspiration 
-See [3D Object Particles](https://www.perimeterwatch.com/).
+See [Incredible mouse trails](https://tympanus.net/codrops/2019/09/24/crafting-stylised-mouse-trails-with-ogl/).
