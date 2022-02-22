@@ -1,0 +1,27 @@
+.hero {
+  &__content {
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 0 5em;
+
+    h5 {
+      font-size: 2rem;
+      margin: 0;
+    }
+    h1 {
+      font-size: 6rem;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+
+      span {
+        &:last-child {
+          margin-left: .5em;
+        }
+      }
+    }
+  }
+}

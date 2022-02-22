@@ -1,23 +1,20 @@
 <template>
   <div class="home">
-    <Scene />
+    <Hero />
   </div>
 </template>
 
 <script>
-import Scene from "@/components/Scene"
+import Hero from "@/components/Hero"
 
 export default {
   name: 'Home',
   components: {
-    Scene
+    Hero
   }
 }
 </script>
 
 <style lang="scss">
-.home {
-  width: 100vw;
-  height: 100vh;
-}
+
 </style>

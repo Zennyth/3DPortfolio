@@ -1,0 +1,24 @@
+header {
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    font-weight: 500;
+    padding: 1.5rem 0;
+
+    &__logo {
+
+    }
+
+    &__main {
+      display: flex;
+      list-style-type: none;
+
+      &-link {
+        font-size: 1rem;
+        margin-left: 2em;
+      }
+    }
+  }
+}
