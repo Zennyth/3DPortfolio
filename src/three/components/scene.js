@@ -19,7 +19,7 @@ class Scene {
     this.scene = new THREE.Scene();
 
     this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, .1, 1000);
-    this.camera.position.set(0, 0, 1);
+    this.camera.position.set(0, 0, 100);
     this.camera.lookAt(this.scene.position);
     this.scene.add(this.camera)
 
