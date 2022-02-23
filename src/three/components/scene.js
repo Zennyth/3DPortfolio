@@ -25,7 +25,7 @@ class Scene {
 
     this.renderer = new Renderer({ dpr: 2 });
     this.container.appendChild(this.renderer.gl.canvas);
-    this.renderer.gl.clearColor(0.9, 0.9, 0.9, 1);
+    this.renderer.gl.clearColor(1, 1, 1, 1);
     this.scene = new Transform();
     
     // objects that implements (_onWindowResize(), _animate(), __onMouseUpdate())
@@ -85,7 +85,7 @@ class Scene {
 
   _animate() {
 
-    this.listeners.forEach(listener => listener._animate());
+    this.listeners.forEach(listener => listener._animate(Date.now()));
 
     this._render();
     requestAnimationFrame(() => this._animate());

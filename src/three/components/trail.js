@@ -14,6 +14,24 @@ import {
 
 import shaders from "../utils/shaders"
 
+const Mode = {
+  LOADER: 'LOADER',
+  MOUSE: 'MOUSE'
+}
+
+
+class TrailPath {
+  constructor() {
+  }
+
+  static getPosition(time) {
+    const mod = time / 1000 % Math.PI;
+    const inter = (mod - Math.PI) * 2;
+
+    return new Vec3(Math.cos(inter), Math.sin(inter) * Math.cos(inter), 0)
+      .divide(2);
+  }
+}
 
 class Trail {
   constructor(main) {
@@ -21,10 +39,13 @@ class Trail {
     this.scene = main.scene;
     this._init();
 
-    main.listeners.push(this)
+    main.listeners.push(this);
   }
 
   _init() {
+    // mode
+    this.mode = Mode.LOADER;
+
     this.mouse = new Vec3;
 
     this.params = {
@@ -47,6 +68,10 @@ class Trail {
     });
 
     this.polyline.mesh.setParent(this.scene);
+
+    window.addEventListener('click', () => {
+      this.mode = this.mode == Mode.MOUSE ? Mode.LOADER : Mode.MOUSE;
+    })
   }
 
   _onWindowResize(width, height) {
@@ -57,18 +82,25 @@ class Trail {
     this.mouse = mouse;
   }
 
-  _animate() {
+  _animate(time) {
     const tmp = new Vec3;
+    const reference = this.mode == Mode.MOUSE ? this.mouse : TrailPath.getPosition(time);
+    // console.log(TrailPath.getPosition(time))
     // Update polyline input points
     for (let i = this.points.length - 1; i >= 0; i--) {
       if (!i) {
         // For the first point, spring ease it to the mouse position
         tmp
-          .copy(this.mouse)
+          .copy(reference)
           .sub(this.points[i])
           .multiply(this.params.spring);
-        this.params.velocity.add(tmp).multiply(this.params.friction);
-        this.points[i].add(this.params.velocity);
+
+        this.params.velocity
+          .add(tmp)
+          .multiply(this.params.friction);
+
+        this.points[i]
+          .add(this.params.velocity);
       } else {
         // The rest of the points ease to the point in front of them, making a line
         this.points[i].lerp(this.points[i - 1], 0.9);
