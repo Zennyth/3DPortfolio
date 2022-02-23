@@ -18,6 +18,10 @@ header {
       &-link {
         font-size: 1rem;
         margin-left: 2em;
+
+        &:first-child {
+          margin-left: 0;
+        }
       }
     }
   }

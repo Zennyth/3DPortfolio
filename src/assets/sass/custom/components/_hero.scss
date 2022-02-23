@@ -8,11 +8,11 @@
     padding: 0 5em;
 
     h5 {
-      font-size: 2rem;
+      font-size: 2em;
       margin: 0;
     }
     h1 {
-      font-size: 6rem;
+      font-size: 6em;
       margin: 0;
       display: flex;
       flex-direction: column;
@@ -23,5 +23,19 @@
         }
       }
     }
+
+    @include media-breakpoint-down(xl) {
+      h5 {
+        font-size: 1.5em;
+      }
+      h1 {
+        font-size: 4em;
+      }
+    }
+
+    @include media-breakpoint-down(md) {
+      padding: 0 1em;
+    }
   }
 }
+
