@@ -1,8 +1,15 @@
 /* eslint-disable */
-
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { load_textures } from '../utils/assets';
+import {
+  Polyline,
+  Renderer,
+  Transform,
+  Geometry,
+  Program,
+  Mesh,
+  Vec3,
+  Vec2,
+  Color
+} from "ogl";
 import { load_shaders } from '../utils/shaders';
 
 import Trail from "./trail";
@@ -16,29 +23,20 @@ class Scene {
   async _init() {
     await load_shaders();
 
-    this.scene = new THREE.Scene();
-
-    this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, .1, 1000);
-    this.camera.position.set(0, 0, 1);
-    this.camera.lookAt(this.scene.position);
-    this.scene.add(this.camera)
-
-
-    this.renderer = new THREE.WebGLRenderer({ antialias: true });
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.renderer.autoClear = false;
-    this.container.appendChild(this.renderer.domElement)
-    this.renderer.setClearColor(0xffffff, 1);
-
-    // controls
-    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+    this.renderer = new Renderer({ dpr: 2 });
+    this.container.appendChild(this.renderer.gl.canvas);
+    this.renderer.gl.clearColor(0.9, 0.9, 0.9, 1);
+    this.scene = new Transform();
+    
+    // objects that implements (_onWindowResize(), _animate(), __onMouseUpdate())
+    this.listeners = []
 
     // events
     // resize
     window.addEventListener('resize', () => this._onWindowResize());
+    this._onWindowResize()
     // mouse move
-    this.mouse = new THREE.Vector3;
+    this.mouse = new Vec3;
     if (window.ontouchstart) {
       window.addEventListener("touchstart", (e) => this._onMouseUpdate(e), false);
       window.addEventListener("touchmove", (e) => this._onMouseUpdate(e), false);
@@ -46,11 +44,6 @@ class Scene {
       window.addEventListener("mousemove", (e) => this._onMouseUpdate(e), false);
     }
 
-    // clock
-    this.clock = new THREE.Clock();
-
-    // objects that implements (_onWindowResize(), _animate(), __onMouseUpdate())
-    this.listeners = []
 
     // mouse trail
     this.trail = new Trail(this);
@@ -61,9 +54,6 @@ class Scene {
   _onWindowResize() {
     const width = window.innerWidth;
     const height = window.innerHeight;
-
-    this.camera.aspect = width / height;
-    this.camera.updateProjectionMatrix();
 
     this.listeners.forEach(listener => listener._onWindowResize(width, height));
 
@@ -94,10 +84,8 @@ class Scene {
   }
 
   _animate() {
-    // const delta = this.clock.getDelta();
-    const time = this.clock.getElapsedTime();
 
-    this.listeners.forEach(listener => listener._animate(time));
+    this.listeners.forEach(listener => listener._animate());
 
     this._render();
     requestAnimationFrame(() => this._animate());
@@ -105,7 +93,7 @@ class Scene {
 
   _render() {
     // render geometry to screen
-    this.renderer.render(this.scene, this.camera);
+    this.renderer.render({ scene: this.scene });
   }
 }
 

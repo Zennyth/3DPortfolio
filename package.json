@@ -10,7 +10,9 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "glsl-shader-loader": "^0.1.6",
+    "gltf-webpack-loader": "^1.0.6",
     "gsap": "^3.9.1",
+    "ogl": "0.0.87",
     "three": "^0.137.5",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0"
