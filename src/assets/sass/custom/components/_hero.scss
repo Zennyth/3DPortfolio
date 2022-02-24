@@ -1,41 +1,88 @@
 .hero {
   &__content {
-    min-height: 70vh;
+    min-height: 90vh;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     padding: 0 5em;
 
-    h5 {
-      font-size: 2em;
-      margin: 0;
-    }
-    h1 {
-      font-size: 6em;
-      margin: 0;
+    &-title {
       display: flex;
       flex-direction: column;
 
-      span {
-        &:last-child {
-          margin-left: .5em;
+      h5 {
+        font-size: 2em;
+        margin: 0;
+      }
+      h1 {
+        font-size: 6em;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+  
+        span {
+          &:last-child {
+            margin-left: .5em;
+          }
+        }
+      }
+  
+      @include media-breakpoint-down(xl) {
+        h5 {
+          font-size: 1.5em;
+        }
+        h1 {
+          font-size: 4em;
+        }
+      }
+  
+      @include media-breakpoint-down(md) {
+        padding: 0 1em;
+      }
+    }
+
+    &-cta {
+
+      .cta__scroll-down {
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        top: 50%;
+        margin: -20px 0 0 -20px;
+        transform: rotate(45deg);
+        border: 2px $black solid;
+        border-left: none;
+        border-top: none;
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          top: 50%;
+          left: 50%;
+          margin: -10px 0 0 -10px;
+          border: 1px $black solid;
+          border-left: none;
+          border-top: none;
+          animation-duration: 2s;
+          animation-iteration-count: infinite;
+          animation-name: arrow;
         }
       }
     }
 
-    @include media-breakpoint-down(xl) {
-      h5 {
-        font-size: 1.5em;
-      }
-      h1 {
-        font-size: 4em;
-      }
-    }
-
-    @include media-breakpoint-down(md) {
-      padding: 0 1em;
-    }
   }
 }
 
+
+@keyframes arrow {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-10px, -10px);
+  }
+}

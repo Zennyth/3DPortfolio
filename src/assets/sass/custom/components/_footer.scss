@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  padding: 1em 0;
+  border-top: solid 1px $dark-grey;
 
   &__info {
     display: flex;

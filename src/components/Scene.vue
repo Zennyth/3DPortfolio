@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import Scene from "@/three/components/scene"
+import Scene from "@/three/components/trail/scene"
 
 export default {
   name: 'Scene',

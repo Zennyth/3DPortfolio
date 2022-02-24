@@ -1,16 +1,10 @@
 /* eslint-disable */
 import {
-  Polyline,
   Renderer,
   Transform,
-  Geometry,
-  Program,
-  Mesh,
   Vec3,
-  Vec2,
-  Color
 } from "ogl";
-import { load_shaders } from '../utils/shaders';
+import { load_shaders } from '../../utils/shaders';
 
 import Trail from "./trail";
 
@@ -52,8 +46,8 @@ class Scene {
   }
 
   _onWindowResize() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const width = this.container.clientWidth;
+    const height = this.container.clientHeight;
 
     this.listeners.forEach(listener => listener._onWindowResize(width, height));
 
@@ -61,22 +55,22 @@ class Scene {
   }
 
   _onMouseUpdate(e) {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const width = this.container.clientWidth;
+    const height = this.container.clientHeight;
 
     if (e.changedTouches && e.changedTouches.length) {
-      e.x = e.changedTouches[0].pageX;
-      e.y = e.changedTouches[0].pageY;
+      e.x = e.changedTouches[0].screenX;
+      e.y = e.changedTouches[0].screenY;
     }
     if (e.x === undefined) {
-      e.x = e.pageX;
-      e.y = e.pageY;
+      e.x = e.screenX;
+      e.y = e.screenY;
     }
 
     // Get mouse value in -1 to 1 range, with y flipped
     this.mouse.set(
       (e.x / width) * 2 - 1,
-      (e.y / height) * -2 + 1,
+      ((e.y + window.pageYOffset) / height) * -2 + 1,
       0
     );
 

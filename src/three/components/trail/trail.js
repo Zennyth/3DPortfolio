@@ -2,17 +2,12 @@
 
 import {
   Polyline,
-  Renderer,
-  Transform,
-  Geometry,
-  Program,
-  Mesh,
   Vec3,
-  Vec2,
-  Color
+  Color,
+  Vec2
 } from "ogl";
 
-import shaders from "../utils/shaders"
+import shaders from "../../utils/shaders"
 
 const Mode = {
   LOADER: 'LOADER',
@@ -44,7 +39,7 @@ class Trail {
 
   _init() {
     // mode
-    this.mode = Mode.LOADER;
+    this.mode = Mode.MOUSE;
 
     this.mouse = new Vec3;
 
@@ -63,7 +58,7 @@ class Trail {
       vertex: shaders.trail.vertexShader,
       uniforms: {
         uColor: { value: new Color("#1b1b1b") },
-        uThickness: { value: 40 }
+        uThickness: { value: 40 },
       }
     });
 

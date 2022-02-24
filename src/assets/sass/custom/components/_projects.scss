@@ -1,0 +1,51 @@
+.projects {
+  min-height: 90vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+  }
+
+  &__wrapper {
+    width: auto;
+
+    &-link {
+      cursor: pointer;
+      height: auto;
+      width: auto;
+      margin: 4em 0;
+
+      &:first-child {
+        margin-top: 0;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      h1 {
+        font-family: 'Le-Murmure', sans-serif;
+        font-size: 5rem;
+        line-height: 5rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        margin: 0;
+      }
+
+      &:hover {
+        color: inherit;
+      }
+
+      img {
+        display: none;
+      }
+    }
+  }
+}
