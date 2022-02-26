@@ -8,3 +8,125 @@ a {
     color: $primary;
   }
 }
+
+$text-arrow-space: 16px;
+$shaft-width: 64px;
+$shaft-thickness: 1px;
+$arrow-head-width: 8px;
+$arrow-head-thickness: $shaft-thickness;
+
+// The Arrow
+
+.linkarrow-arrow {
+  width: $shaft-width;
+  transition: all 0.2s;
+ 
+  &.left {
+    position: absolute;
+    top: 60%;
+    left: 0;
+
+    > .shaft {
+      width: 0;
+      background-color: $dark-grey;
+      
+      &:before,
+      &:after {
+        width: 0;
+        background-color: $dark-grey;
+      }
+
+      &:before {
+        transform: rotate(0);
+      }
+
+      &:after {
+        transform: rotate(0);
+      }
+    }
+  }
+  
+  &.right {
+    top: 3px;
+    
+    > .shaft {
+      width: $shaft-width;
+      transition-delay: 0.2s;
+
+      &:before,
+      &:after { 
+        width: $arrow-head-width;
+        transition-delay: 0.3s;
+        transition: all 0.5s;
+      }
+      
+      &:before {
+        transform: rotate(40deg);
+      }
+      
+      &:after {
+        transform: rotate(-40deg);
+      }
+    }
+  }
+
+  > .shaft {
+    background-color: $dark-grey;
+    display: block;
+    height: $shaft-thickness;
+    position: relative;
+    transition: all 0.2s;
+    transition-delay: 0;
+    will-change: transform;
+
+    &:before,
+    &:after {
+      background-color: $dark-grey;
+      content: '';
+      display: block;
+      height: $arrow-head-thickness;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transition: all 0.2s;
+      transition-delay: 0;
+    }
+
+    &:before {
+      transform-origin: top right;
+    }
+
+    &:after {
+      transform-origin: bottom right;
+    }
+  }
+}
+
+
+
+// Animated Arrow Button
+
+.linkarrow {
+  display: inline-block;
+  color: $dark-grey;
+  font-size: 1.25em;
+  font-style: italic;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.2s;
+  
+  > .main {
+    display: flex;
+    align-items: center;
+    transition: all 0.2s;
+    
+    > .text {
+      margin: 0 $text-arrow-space 0 0;
+      line-height: 1;
+    }
+    
+    > .linkarrow-arrow {
+      position: relative;
+    }
+  }
+}

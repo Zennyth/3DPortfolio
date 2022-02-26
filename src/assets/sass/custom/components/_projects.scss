@@ -1,10 +1,9 @@
 .projects {
-  min-height: 90vh;
+  min-height: 100vh;
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
+  padding-bottom: 2em;
+  justify-content: flex-start;
+
   canvas {
     position: absolute;
     top: 0;
@@ -14,14 +13,24 @@
     z-index: -1;
   }
 
+  > h1 {
+    margin-bottom: 1em;
+  }
+
   &__wrapper {
-    width: auto;
+    width: 100%;
 
     &-link {
+      width: 100%;
       cursor: pointer;
       height: auto;
-      width: auto;
       margin: 4em 0;
+      padding: 1em 0;
+      border-bottom: solid 1px $dark-grey;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      overflow: hidden;
 
       &:first-child {
         margin-top: 0;
@@ -31,7 +40,7 @@
       }
 
       h1 {
-        font-family: 'Le-Murmure', sans-serif;
+        font-family: "Le-Murmure", sans-serif;
         font-size: 5rem;
         line-height: 5rem;
         font-weight: 400;
@@ -39,8 +48,68 @@
         margin: 0;
       }
 
+      @include media-breakpoint-down(md) {
+        .linkarrow {
+          display: none;
+        }
+      }
+
       &:hover {
         color: inherit;
+
+        .linkarrow {
+          color: $black;
+
+          > .linkarrow-arrow.left {
+            > .shaft {
+              width: $shaft-width;
+              transition-delay: 0.1s;
+              background-color: $black;
+
+              &:before,
+              &:after {
+                width: $arrow-head-width;
+                transition-delay: 0.1s;
+                background-color: $black;
+              }
+
+              &:before {
+                transform: rotate(40deg);
+              }
+
+              &:after {
+                transform: rotate(-40deg);
+              }
+            }
+          }
+
+          > .main {
+            transform: translateX($shaft-width + $text-arrow-space);
+
+            > .linkarrow-arrow.right {
+              > .shaft {
+                width: 0;
+                transform: translateX(200%);
+                transition-delay: 0;
+
+                &:before,
+                &:after {
+                  width: 0;
+                  transition-delay: 0;
+                  transition: all 0.1s;
+                }
+
+                &:before {
+                  transform: rotate(0);
+                }
+
+                &:after {
+                  transform: rotate(0);
+                }
+              }
+            }
+          }
+        }
       }
 
       img {

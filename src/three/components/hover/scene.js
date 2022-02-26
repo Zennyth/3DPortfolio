@@ -124,9 +124,11 @@ class EffectShell {
   }
 
   _onMouseMove(event) {
+    const currentScrollTop = window.scrollY - this.container.offsetTop;
+
     // get normalized mouse position on viewport
     this.mouse.x = (event.clientX / this.viewport.width) * 2 - 1
-    this.mouse.y = -(event.clientY / this.viewport.height) * 2 + 1
+    this.mouse.y = -((event.clientY + currentScrollTop) / this.viewport.height) * 2 + 1
 
     this.onMouseMove(event)
   }

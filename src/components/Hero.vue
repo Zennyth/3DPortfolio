@@ -1,5 +1,5 @@
 <template>
-  <div class="hero section">
+  <div class="hero">
     <div class="hero__content">
       <div class="hero__content-title">
         <transition
