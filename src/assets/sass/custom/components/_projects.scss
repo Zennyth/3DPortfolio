@@ -9,7 +9,7 @@
     top: 0;
     left: 0;
     height: 100%;
-    width: 100%;
+    width: 100vw;
     z-index: -1;
   }
 
@@ -48,7 +48,7 @@
         margin: 0;
       }
 
-      @include media-breakpoint-down(md) {
+      @include media-breakpoint-down(sm) {
         .linkarrow {
           display: none;
         }

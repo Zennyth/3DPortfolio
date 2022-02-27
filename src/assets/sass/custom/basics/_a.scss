@@ -114,6 +114,7 @@ $arrow-head-thickness: $shaft-thickness;
   text-decoration: none;
   position: relative;
   transition: all 0.2s;
+  cursor: pointer;
   
   > .main {
     display: flex;
@@ -127,6 +128,60 @@ $arrow-head-thickness: $shaft-thickness;
     
     > .linkarrow-arrow {
       position: relative;
+    }
+  }
+
+  &:hover {
+    color: $black;
+
+    > .linkarrow-arrow.left {
+      > .shaft {
+        width: $shaft-width;
+        transition-delay: 0.1s;
+        background-color: $black;
+
+        &:before,
+        &:after {
+          width: $arrow-head-width;
+          transition-delay: 0.1s;
+          background-color: $black;
+        }
+
+        &:before {
+          transform: rotate(40deg);
+        }
+
+        &:after {
+          transform: rotate(-40deg);
+        }
+      }
+    }
+
+    > .main {
+      transform: translateX($shaft-width + $text-arrow-space);
+
+      > .linkarrow-arrow.right {
+        > .shaft {
+          width: 0;
+          transform: translateX(200%);
+          transition-delay: 0;
+
+          &:before,
+          &:after {
+            width: 0;
+            transition-delay: 0;
+            transition: all 0.1s;
+          }
+
+          &:before {
+            transform: rotate(0);
+          }
+
+          &:after {
+            transform: rotate(0);
+          }
+        }
+      }
     }
   }
 }

@@ -1,3 +1,44 @@
 .about {
-  
+  h2 {
+    text-align: left;
+    width: 100%;
+    margin: 1em 0;
+  }
+
+  &__services {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+
+    &-service {
+      margin: 2em;
+      padding-bottom: .5em;
+      width: 300px;
+      height: 150px;
+      border-bottom: solid 1px $dark-grey;
+
+      .icons {
+        > svg {
+          margin-left: .25em;
+          font-size: 1.75em;
+
+          &:first-child {
+            margin-left: 0;
+          }
+
+          &:hover {
+            color: $primary;
+          }
+        }
+      }
+
+      h5 {
+        margin: .5em 0;
+        font-size: 1.5em;
+      }
+    }
+  }
 }

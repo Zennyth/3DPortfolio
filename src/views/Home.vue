@@ -3,6 +3,7 @@
     <Hero />
     <Projects />
     <About />
+    <Contact />
   </div>
 </template>
 
@@ -10,13 +11,15 @@
 import Hero from "@/components/Hero"
 import Projects from "@/components/projects/Projects"
 import About from "@/components/about/About"
+import Contact from "@/components/Contact"
 
 export default {
   name: 'Home',
   components: {
     Hero,
     Projects,
-    About
+    About,
+    Contact
   }
 }
 </script>

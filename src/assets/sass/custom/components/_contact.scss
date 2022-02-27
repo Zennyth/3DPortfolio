@@ -1,0 +1,20 @@
+.contact {
+  min-height: 70vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+
+  h1 {
+    width: 50%;
+    font-size: 4em;
+  }
+
+  @include media-breakpoint-down(sm) {
+    flex-direction: column;
+    justify-content: center;
+
+    h1 {
+      width: 100%;
+    }
+  }
+}
