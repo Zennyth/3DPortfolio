@@ -2,6 +2,8 @@
 import * as THREE from "three";
 import gsap from "gsap";
 
+import store from "@/store"
+
 class EffectShell {
   constructor(container = document.body, itemsWrapper = null) {
     this.container = container
@@ -10,6 +12,8 @@ class EffectShell {
     this.setup()
     this.initEffectShell().then(() => {
       console.log('load finished')
+      store.dispatch('appLoaded')
+      this.onWindowResize()
       this.isLoaded = true
       if (this.isMouseOver) this.onMouseOver(this.tempItemIndex)
       this.tempItemIndex = null
@@ -62,6 +66,8 @@ class EffectShell {
   }
 
   render() {
+    this.onWindowResize();
+
     // called every frame
     this.time += this.clock.getDelta() * this.timeSpeed
     this.renderer.render(this.scene, this.camera)
@@ -158,6 +164,7 @@ class EffectShell {
     let width = this.container.clientWidth
     let height = this.container.clientHeight
     let aspectRatio = width / height
+
     return {
       width,
       height,

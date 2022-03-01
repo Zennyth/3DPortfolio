@@ -1,25 +1,30 @@
 <template>
-  <div class="contact section">
-    <h1>Let's work together</h1>
-    <div class="linkarrow">
-      <span class="linkarrow-arrow left">
-        <span class="shaft"></span>
-      </span>
-      <span class="main">
-        <span class="text">Email me</span>
-        <span class="linkarrow-arrow right">
+  <animated>
+    <div class="contact section" id="contact">
+      <h1>Let's work together</h1>
+      <div class="linkarrow" @click="mail">
+        <span class="linkarrow-arrow left">
           <span class="shaft"></span>
         </span>
-      </span>
+        <span class="main">
+          <span class="text">Email me</span>
+          <span class="linkarrow-arrow right">
+            <span class="shaft"></span>
+          </span>
+        </span>
+      </div>
     </div>
-  </div>
+  </animated>
 </template>
 <script>
-import animations from "@/mixins/animations";
 
 export default {
-  mixins: [animations],
   mounted() {},
+  methods: {
+    mail() {
+      window.open('mailto:mathis.figuet@orange.fr');
+    }
+  }
 };
 </script>
 <style>

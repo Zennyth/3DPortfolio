@@ -37,9 +37,13 @@ class Trail {
     main.listeners.push(this);
   }
 
+  _updateModeToMouse() {
+    this.mode = Mode.MOUSE;
+  }
+
   _init() {
     // mode
-    this.mode = Mode.MOUSE;
+    this.mode = Mode.LOADER;
 
     this.mouse = new Vec3;
 
@@ -64,9 +68,9 @@ class Trail {
 
     this.polyline.mesh.setParent(this.scene);
 
-    window.addEventListener('click', () => {
-      this.mode = this.mode == Mode.MOUSE ? Mode.LOADER : Mode.MOUSE;
-    })
+    // window.addEventListener('click', () => {
+    //   this.mode = this.mode == Mode.MOUSE ? Mode.LOADER : Mode.MOUSE;
+    // })
   }
 
   _onWindowResize(width, height) {

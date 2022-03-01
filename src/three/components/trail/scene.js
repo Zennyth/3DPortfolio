@@ -49,9 +49,10 @@ class Scene {
     const width = this.container.clientWidth;
     const height = this.container.clientHeight;
 
+    this.renderer.setSize(width, height);
+    
     this.listeners.forEach(listener => listener._onWindowResize(width, height));
 
-    this.renderer.setSize(width, height);
   }
 
   _onMouseUpdate(e) {

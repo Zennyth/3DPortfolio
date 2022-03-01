@@ -2,16 +2,19 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 .app {
   min-height: 100vh;
-  padding: 0 5vw;
   position: relative;
   overflow-x: hidden;
-
   color: $black;
   font-family: $font;
+
+  header, .home > *, .footer {
+    padding: 0 5vw;
+  }
 }
 
 .background {
