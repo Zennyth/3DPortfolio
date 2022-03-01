@@ -11,7 +11,6 @@ class EffectShell {
     if (!this.container || !this.itemsWrapper) return
     this.setup()
     this.initEffectShell().then(() => {
-      console.log('load finished')
       store.dispatch('appLoaded')
       this.onWindowResize()
       this.isLoaded = true
@@ -44,8 +43,7 @@ class EffectShell {
 
     //mouse
     this.mouse = new THREE.Vector2()
-
-    // console.log(this.viewSize)
+    
     // let pg = new THREE.PlaneBufferGeometry(
     //   this.viewSize.width,
     //   this.viewSize.height,

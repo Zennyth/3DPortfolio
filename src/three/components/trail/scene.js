@@ -15,6 +15,7 @@ class Scene {
   }
 
   async _init() {
+    this.isReady = false;
     await load_shaders();
 
     this.renderer = new Renderer({ dpr: 2 });
@@ -43,6 +44,10 @@ class Scene {
     this.trail = new Trail(this);
 
     this._animate();
+  }
+
+  _onReady() {
+    this.isReady = true;
   }
 
   _onWindowResize() {

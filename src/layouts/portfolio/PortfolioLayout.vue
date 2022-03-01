@@ -26,7 +26,6 @@ export default {
     Footer,
   },
   mounted() {
-    console.log(this.$store.getters.loaded, this.$refs.background)
     this.scene = new Scene(this.$refs.background)
 
     window.document.title = 'Porftolio Mathis FIGUET'
@@ -36,10 +35,13 @@ export default {
     isAppLoaded() {
       const state = this.$store.getters.loaded 
 
-      if(state === true && this.scene?.trail) {
+      if(state === true) {
         this.$nextTick(() => {
-          this.scene.trail._updateModeToMouse()
-          this.scene._onWindowResize()
+          this.scene._onReady()
+          if(this.scene?.trail) {
+            this.scene.trail._updateModeToMouse()
+            this.scene._onWindowResize()
+          }
         })
       }
 

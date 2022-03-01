@@ -32,6 +32,7 @@ class Trail {
   constructor(main) {
     this.renderer = main.renderer;
     this.scene = main.scene;
+    this.main = main;
     this._init();
 
     main.listeners.push(this);
@@ -43,7 +44,7 @@ class Trail {
 
   _init() {
     // mode
-    this.mode = Mode.LOADER;
+    this.mode = !this.main.isReady ? Mode.LOADER : Mode.MOUSE;
 
     this.mouse = new Vec3;
 
@@ -84,7 +85,7 @@ class Trail {
   _animate(time) {
     const tmp = new Vec3;
     const reference = this.mode == Mode.MOUSE ? this.mouse : TrailPath.getPosition(time);
-    // console.log(TrailPath.getPosition(time))
+
     // Update polyline input points
     for (let i = this.points.length - 1; i >= 0; i--) {
       if (!i) {

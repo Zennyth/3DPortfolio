@@ -91,11 +91,6 @@ export default {
     href(link) {
       window.open(link, "_blank").focus();
     },
-  },
-  watch: {
-    '$refs.container.clientHeight'() {
-      console.log("hello")
-    }
   }
 };
 </script>
