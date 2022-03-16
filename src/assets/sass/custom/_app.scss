@@ -13,7 +13,8 @@ html, body {
   font-family: $font;
 
   header, .home > *, .footer {
-    padding: 0 5vw;
+    padding-right: 5vw;
+    padding-left: 5vw;
   }
 }
 

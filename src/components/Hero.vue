@@ -13,9 +13,9 @@
         </animated>
       </div>
       <animated :index="2">
-        <div class="hero__content-cta">
+        <a href="#projects" class="hero__content-cta">
           <div class="cta__scroll-down"></div>
-        </div>
+        </a>
       </animated>
     </div>
   </div>
